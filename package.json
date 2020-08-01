@@ -1,6 +1,6 @@
 {
   "name": "@fensziii/readdirrecursive",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node JS - readdirRecursive - async/await",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/fensziii/readdirRecursive.git"
   },
-  "author": "Martin B",
+  "author": "Martin B <fensziii@live.de>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fensziii/readdirRecursive/issues"
