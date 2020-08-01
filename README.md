@@ -1,6 +1,15 @@
 # nodejs - readdirRecursive
 
-Read dir Recursive
+[![Build Status](https://travis-ci.com/fensziii/readdirRecursive.svg?branch=master)](https://travis-ci.com/github/fensziii/readdirRecursive)
+
+read dir recursively
+
+## Supported Node versions
+```
+10.x = Unsupported
+12.x = Supported
+14.x = Supported
+```
 
 ## Example
 
