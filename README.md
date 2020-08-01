@@ -1,14 +1,18 @@
 # nodejs - readdirRecursive
 
 [![Build Status](https://travis-ci.com/fensziii/readdirRecursive.svg?branch=master)](https://travis-ci.com/github/fensziii/readdirRecursive)
-[![npm version](https://img.shields.io/badge/npm%20version-1.0.4-brightgreen)](https://www.npmjs.com/package/@fensziii/readdirrecursive)
+[![npm version](https://img.shields.io/badge/npm%20version-1.0.4-brightgreen)]()
 
 read dir recursively
+
+npm package [@fensziii/readdirrecursive](https://www.npmjs.com/package/@fensziii/readdirrecursive).
 
 ## Supported Node versions
 
 **10.x** = Unsupported
+
 **12.x** = Supported
+
 **14.x** = Supported
 
 
