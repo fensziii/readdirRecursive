@@ -14,19 +14,24 @@ read dir recursively
 ## Example
 
 ```
-const { readdirRecursive } = require(__dirname + '/index');
+const { readdirRecursive } = require('@fensziii/readdirrecursive');
 
 const path  = require("path");
 
-const options = {
-    path        : path.join(__dirname),
-    fullpath    : false,
-    filter      : ".json",
-};
 
-const files = await readdirRecursive(options);
+(async ()=>{
 
-console.log(files);
+    const options = {
+        path        : path.join(__dirname),
+        fullpath    : false,
+        filter      : "",
+    };
+
+    const files = await readdirRecursive(options);
+
+    console.log(files);
+
+})();
 ```
 
 
