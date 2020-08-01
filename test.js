@@ -1,4 +1,4 @@
-var readdirrecursive = require(__dirname + '/index')
+var rdr = require(__dirname + '/index')
 
 const path  = require("path");
 
@@ -11,7 +11,7 @@ const path  = require("path");
         filter      : "",
     };
 
-    const files = await readdirrecursive.readdirRecursive(options);
+    const files = await rdr.readdirRecursive(options);
 
     console.log(files);
 

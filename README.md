@@ -14,7 +14,7 @@ read dir recursively
 ## Example
 
 ```
-var readdirrecursive = require("@fensziii/readdirrecursive")
+var rdr = require("@fensziii/readdirrecursive")
 
 const path  = require("path");
 
@@ -27,7 +27,7 @@ const path  = require("path");
         filter      : "",
     };
 
-    const files = await readdirrecursive.readdirRecursive(options);
+    const files = await rdr.readdirRecursive(options);
 
     console.log(files);
 
