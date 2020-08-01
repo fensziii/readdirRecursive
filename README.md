@@ -12,6 +12,16 @@ read dir recursively
 14.x = Supported
 ```
 
+## Install
+
+```
+npm i @fensziii/readdirrecursive
+
+or
+
+npm i --save @fensziii/readdirrecursive
+```
+
 ## Example
 
 ```
