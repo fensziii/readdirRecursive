@@ -1,7 +1,7 @@
 # nodejs - readdirRecursive
 
 [![Build Status](https://travis-ci.com/fensziii/readdirRecursive.svg?branch=master)](https://travis-ci.com/github/fensziii/readdirRecursive)
-[![npm version](https://img.shields.io/badge/npm%20version-1.0.4-brightgreen)]()
+[![npm version](https://img.shields.io/badge/npm%20version-1.0.5-brightgreen)]()
 
 read dir recursively
 
