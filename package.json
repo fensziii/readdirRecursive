@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/fensziii/readdirRecursive/issues"
   },
-  "homepage": "https://github.com/fensziii/readdirRecursive#readme"
+  "homepage": "https://github.com/fensziii/readdirRecursive#readme",
+  "keywords": [
+    "node",
+    "nodejs",
+    "readdir",
+    "readdirrecursive",
+    "recursive"
+  ]
 }
