@@ -7,7 +7,7 @@ const { readdirRecursive } = require(__dirname + '/index');
     const options = {
         path        : path.join(__dirname),
         fullpath    : false,
-        filter      : ".txt",
+        filter      : "",
     };
 
 

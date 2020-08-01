@@ -79,7 +79,7 @@ if (isMainThread) {
 
             const _OPTF     = options.filter;
 
-            const filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true ? true : d.includes(options.filter);
+            const filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
 
 
             if(filter){
