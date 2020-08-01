@@ -24,7 +24,7 @@ const path  = require("path");
     const options = {
         path        : path.join(__dirname),
         fullpath    : false,
-        filter      : "",
+        filter      : "", // example ".txt" Filters for text files
     };
 
     const files = await rdr.readdirRecursive(options);
