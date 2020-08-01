@@ -65,3 +65,7 @@ const path  = require("path");
   converted: { size: '29.82 KB', time: '00:00:00.051' }
 }
 ```
+
+## License
+
+***MIT***
