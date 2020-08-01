@@ -1,6 +1,6 @@
 {
   "name": "@fensziii/readdirrecursive",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Node JS - readdirRecursive - async/await",
   "main": "index.js",
   "scripts": {
