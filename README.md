@@ -28,6 +28,8 @@ const path  = require("path");
     };
 
     const files = await rdr.readdirRecursive(options);
+    // or
+    const files = await rdr.readdirRecursive(options).catch(err=>console.log(err));
 
     console.log(files);
 
