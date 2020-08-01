@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/fensziii/readdirRecursive.svg?branch=master)](https://travis-ci.com/github/fensziii/readdirRecursive)
 
+[![version](https://img.shields.io/badge/npm-version-brightgreen)](https://www.npmjs.com/package/@fensziii/readdirrecursive)
+
 read dir recursively
 
 ## Supported Node versions
