@@ -1,8 +1,9 @@
+var readdirrecursive = require(__dirname + '/index')
+
 const path  = require("path");
 
-const { readdirRecursive } = require(__dirname + '/index');
 
-(async function (){
+(async ()=>{
 
     const options = {
         path        : path.join(__dirname),
@@ -10,9 +11,8 @@ const { readdirRecursive } = require(__dirname + '/index');
         filter      : "",
     };
 
+    const files = await readdirrecursive.readdirRecursive(options);
 
-    const files = await readdirRecursive(options);
-
-    console.log(files); 
+    console.log(files);
 
 })();
