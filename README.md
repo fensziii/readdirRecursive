@@ -9,7 +9,7 @@ npm package [@fensziii/readdirrecursive](https://www.npmjs.com/package/@fensziii
 
 ## Supported Node versions
 
-~~**10.x** = Supported~~
+~~**<=10.x** = Supported~~
 
 **12.x** = Supported
 
