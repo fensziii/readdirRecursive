@@ -17,8 +17,7 @@ npm package [@fensziii/readdirrecursive](https://www.npmjs.com/package/@fensziii
 
 
 ## Install
-
-```
+```txt
 npm i @fensziii/readdirrecursive
 
 or
@@ -27,7 +26,6 @@ npm i @fensziii/readdirrecursive --save
 ```
 
 ## Example
-
 ```js
 var rdr = require("@fensziii/readdirrecursive")
 
@@ -54,8 +52,7 @@ const path  = require("path");
 
 
 ## Output
-
-```
+```txt
 {
   path: '',
   files: [],
