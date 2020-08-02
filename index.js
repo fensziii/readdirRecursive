@@ -1,8 +1,8 @@
-const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
+var { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 
-const fs        = require("fs");
-const path      = require("path");
-const os        = require("os");
+var fs        = require("fs");
+var path      = require("path");
+var os        = require("os");
 
 /*
 
@@ -10,7 +10,7 @@ const os        = require("os");
 
 */
 
-const tools = {
+var tools = {
 
     formatBytes : function formatBytes(bytes, decimals = 2) {
 
@@ -22,11 +22,11 @@ const tools = {
 
         if (bytes === 0) return "0 Bytes";
     
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+        var k = 1024;
+        var dm = decimals < 0 ? 0 : decimals;
+        var sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        var i = Math.floor(Math.log(bytes) / Math.log(k));
     
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 
@@ -66,9 +66,9 @@ if (isMainThread) {
             var rowDirs     = [];
             var rowSizes    = 0;
 
-            const time_start    = new Date().getTime();
+            var time_start  = new Date().getTime();
 
-            const worker = new Worker(__filename, {
+            var worker = new Worker(__filename, {
                 workerData: {
                     path      : options.path
                 }
@@ -76,23 +76,23 @@ if (isMainThread) {
 
             worker.on("message", (d)=>{
 
-                let filepath    = "";
-                const platform  = os.platform();
+                let filepath = "";
+                var platform = os.platform();
 
-                if(options.fullpath === false && platform === "linux") filepath = d.path.replace(options.path + "/", "");
-                if(options.fullpath === false && platform === "win32") filepath = d.path.replace(options.path + "\\", "");
+                if(options.fullpath === false && platform === "linux"){ filepath = d.path.replace(options.path + "/", ""); }
+                if(options.fullpath === false && platform === "win32"){ filepath = d.path.replace(options.path + "\\", ""); }
 
 
                 if(d.type === "file"){
 
-                    const _OPTF     = options.filter;
-                    const filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
+                    var _OPTF     = options.filter;
+                    var filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
     
                     if(filter){
 
-                        var stats_dir = fs.statSync(d.path);
+                        var StatsFile = fs.statSync(d.path);
     
-                        rowSizes = rowSizes + stats_dir.size;
+                        rowSizes = rowSizes + StatsFile.size;
     
                         rowFiles.push(filepath);
                     }
@@ -111,21 +111,21 @@ if (isMainThread) {
 
             worker.on("exit", (code) => {
 
-                const time_ends = new Date().getTime() - time_start;
+                var time_ends = new Date().getTime() - time_start;
 
                 resolve({
-                    path      : options.path,
-                    files     : rowFiles,
-                    folders   : rowDirs,
-                    size      : rowSizes,
-                    time      : time_ends,
-                    counter   : {
+                    files       : rowFiles,
+                    folders     : rowDirs,
+                    info        : {
+                        time        : time_ends,
+                        path        : options.path,
                         files       : rowFiles.length,
-                        folders     : rowDirs.length
-                    },
-                    converted : {
-                        size        : tools.formatBytes(rowSizes),
-                        time        : tools.msToTime(time_ends)
+                        folders     : rowDirs.length,
+                        size        : rowSizes,
+                        converted   : {
+                            size        : tools.formatBytes(rowSizes),
+                            time        : tools.msToTime(time_ends)
+                        }
                     }
                 });
 
@@ -137,21 +137,21 @@ if (isMainThread) {
 
 } else {
 
-    const walk = function (dir) {
+    const Walker = function (dir) {
         
         fs.readdir(dir, function (err, files){
 
             files.forEach((file) => {
             
-                const paths_res = path.resolve(dir, file);
+                var paths_res = path.resolve(dir, file);
     
-                const statsWalk = fs.statSync(paths_res);
+                var StatsWalk = fs.statSync(paths_res);
         
-                if(statsWalk.isDirectory()){
+                if(StatsWalk.isDirectory()){
             
                     parentPort.postMessage({ type: "dir", path: paths_res });
     
-                    walk(paths_res);
+                    Walker(paths_res);
     
             
                 } else {
@@ -166,6 +166,6 @@ if (isMainThread) {
 
     }
 
-    walk( workerData.path );
+    Walker( workerData.path );
 
 }
