@@ -45,7 +45,7 @@ const path  = require("path");
 
     });
 
-    console.warn(files);
+    console.info(files);
 
 })();
 ```
