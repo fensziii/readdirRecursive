@@ -1,13 +1,13 @@
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
-var rdr     = require("./../index")
+var rdr     = require("./../index");
 
 const path  = require("path");
 
 (async () => {
 
     const options = {
-        path        : path.join(__dirname, '..'),
+        path        : path.join(__dirname, ".."),
         fullpath    : false,
         filter      : "", // example ".txt" Filters for text files
     };
