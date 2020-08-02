@@ -31,7 +31,7 @@ var rdr     = require("@fensziii/readdirrecursive")
 
 const path  = require("path");
 
-(async ()=>{
+(async () => {
 
     const options = {
         path        : path.join(__dirname),
@@ -39,11 +39,13 @@ const path  = require("path");
         filter      : "", // example ".txt" Filters for text files
     };
 
-    const files = await rdr.readdirRecursive(options);
-    // or
-    const files = await rdr.readdirRecursive(options).catch(err=>console.log(err));
+    const files = await rdr.readdirRecursive(options).catch((err) => {
 
-    console.log(files);
+        console.error(err);
+
+    });
+
+    console.warn(files);
 
 })();
 ```
@@ -51,12 +53,19 @@ const path  = require("path");
 ## Output
 ```txt
 {
-  path: '',
-  files: [],
-  size: 30532,
-  time: 51,
-  counter: 41,
-  converted: { size: '29.82 KB', time: '00:00:00.051' }
+  files       : [],
+  folders     : [],
+  info        : {
+    time        : 51,
+    path        : "",
+    files       : 41,
+    folders     : 20,
+    size        : 30532,
+    converted   : {
+      size        : '29.82 KB',
+      time        : '00:00:00.051'
+    }
+  }
 }
 ```
 
