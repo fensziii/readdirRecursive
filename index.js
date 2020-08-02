@@ -66,7 +66,7 @@ if (isMainThread) {
             var rowDirs     = [];
             var rowSizes    = 0;
 
-            var time_start  = new Date().getTime();
+            var TimeStart  = new Date().getTime();
 
             var worker = new Worker(__filename, {
                 workerData: {
@@ -111,20 +111,20 @@ if (isMainThread) {
 
             worker.on("exit", (code) => {
 
-                var time_ends = new Date().getTime() - time_start;
+                var TimeEnds = new Date().getTime() - TimeStart;
 
                 resolve({
                     files       : rowFiles,
                     folders     : rowDirs,
                     info        : {
-                        time        : time_ends,
+                        time        : TimeEnds,
                         path        : options.path,
                         files       : rowFiles.length,
                         folders     : rowDirs.length,
                         size        : rowSizes,
                         converted   : {
                             size        : tools.formatBytes(rowSizes),
-                            time        : tools.msToTime(time_ends)
+                            time        : tools.msToTime(TimeEnds)
                         }
                     }
                 });
