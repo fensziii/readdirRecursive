@@ -55,7 +55,7 @@ const path  = require("path");
 
 ## Output
 
-```json
+```
 {
   path: '',
   files: [],
