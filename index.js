@@ -20,7 +20,7 @@ var tools = {
 
         */
 
-        if (bytes === 0) return "0 Bytes";
+        if (bytes === 0){ return "0 Bytes"; }
     
         var k = 1024;
         var dm = decimals < 0 ? 0 : decimals;
@@ -74,7 +74,7 @@ if (isMainThread) {
                 }
             });
 
-            worker.on("message", (d)=>{
+            worker.on("message", (d) => {
 
                 let filepath = "";
                 var platform = os.platform();
