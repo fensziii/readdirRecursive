@@ -1,9 +1,9 @@
-var rdr = require(__dirname + '/index')
+var rdr = require("./index")
 
 const path  = require("path");
 
 
-(async ()=>{
+( async () => {
 
     const options = {
         path        : path.join(__dirname),
@@ -11,7 +11,7 @@ const path  = require("path");
         filter      : "",
     };
 
-    const files = await rdr.readdirRecursive(options).catch(err=>console.log(err));
+    const files = await rdr.readdirRecursive(options).catch((err) => { console.error(err) });
 
     console.log(files);
 

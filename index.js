@@ -1,8 +1,8 @@
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
+const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 
 const fs        = require("fs");
 const path      = require("path");
-const os        = require('os');
+const os        = require("os");
 
 /*
 
@@ -20,15 +20,15 @@ const tools = {
 
         */
 
-        if (bytes === 0) return '0 Bytes';
+        if (bytes === 0) return "0 Bytes";
     
         const k = 1024;
         const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
     
         const i = Math.floor(Math.log(bytes) / Math.log(k));
     
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 
     },
 
@@ -41,9 +41,9 @@ const tools = {
         */
 
         // Pad to 2 or 3 digits, default is 2
-        var pad = (n, z = 2) => ('00' + n).slice(-z);
+        var pad = (n, z = 2) => ("00" + n).slice(-z);
 
-        return pad(s/3.6e6|0) + ':' + pad((s%3.6e6)/6e4 | 0) + ':' + pad((s%6e4)/1000|0) + '.' + pad(s%1000, 3);
+        return pad(s/3.6e6|0) + ":" + pad((s%3.6e6)/6e4 | 0) + ":" + pad((s%6e4)/1000|0) + "." + pad(s%1000, 3);
 
     }
 
@@ -60,74 +60,88 @@ if (isMainThread) {
 
     module.exports.readdirRecursive = function readdirRecursive(options) {
 
-      return new Promise((resolve, reject) => { 
+        return new Promise((resolve, reject) => { 
 
-        var rowFiles        = [];
-        var rowSizes        = 0;
+            var rowFiles    = [];
+            var rowDirs     = [];
+            var rowSizes    = 0;
 
-        const time_start    = new Date().getTime();
+            const time_start    = new Date().getTime();
 
-        const worker = new Worker(__filename, {
-            workerData: {
-                path      : options.path
-            }
-        });
-
-        worker.on('message', (d)=>{
-
-            const platform  = os.platform();
-
-            const _OPTF     = options.filter;
-
-            const filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
-
-
-            if(filter){
-
-                const stats_dir = fs.statSync(d);
-
-                rowSizes = rowSizes + stats_dir.size;
-
-                if(options.fullpath === false && platform === "linux") d = d.replace(options.path + `/`, "");
-                if(options.fullpath === false && platform === "win32") d = d.replace(options.path + `\\`, "");
-
-                rowFiles.push(d);
-
-            }
-
-        });
-
-        worker.on('error', reject);
-
-        worker.on('exit', (code) => {
-
-            const time_ends = new Date().getTime() - time_start;
-
-            resolve({
-                path      : options.path,
-                files     : rowFiles,
-                size      : rowSizes,
-                time      : time_ends,
-                counter   : rowFiles.length,
-                converted : {
-                    size      : tools.formatBytes(rowSizes),
-                    time      : tools.msToTime(time_ends)
+            const worker = new Worker(__filename, {
+                workerData: {
+                    path      : options.path
                 }
             });
 
-        });
+            worker.on("message", (d)=>{
 
-      });
+                let filepath    = "";
+                const platform  = os.platform();
+
+                if(options.fullpath === false && platform === "linux") filepath = d.path.replace(options.path + "/", "");
+                if(options.fullpath === false && platform === "win32") filepath = d.path.replace(options.path + "\\", "");
+
+
+                if(d.type === "file"){
+
+                    const _OPTF     = options.filter;
+                    const filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
+    
+                    if(filter){
+
+                        var stats_dir = fs.statSync(d.path);
+    
+                        rowSizes = rowSizes + stats_dir.size;
+    
+                        rowFiles.push(filepath);
+                    }
+
+                }
+
+                if(d.type === "dir"){
+
+                    rowDirs.push(filepath);
+
+                }
+
+            });
+
+            worker.on("error", reject);
+
+            worker.on("exit", (code) => {
+
+                const time_ends = new Date().getTime() - time_start;
+
+                resolve({
+                    path      : options.path,
+                    files     : rowFiles,
+                    folders   : rowDirs,
+                    size      : rowSizes,
+                    time      : time_ends,
+                    counter   : {
+                        files       : rowFiles.length,
+                        folders     : rowDirs.length
+                    },
+                    converted : {
+                        size        : tools.formatBytes(rowSizes),
+                        time        : tools.msToTime(time_ends)
+                    }
+                });
+
+            });
+
+        });
 
     };
 
 } else {
 
-    function walk(dir) {
+    const walk = function (dir) {
         
         fs.readdir(dir, function (err, files){
 
-            files.forEach(file => {
+            files.forEach((file) => {
             
                 const paths_res = path.resolve(dir, file);
     
@@ -135,13 +149,14 @@ if (isMainThread) {
         
                 if(stats_dir.isDirectory()){
             
+                    parentPort.postMessage({ type: "dir", path: paths_res });
     
                     walk(paths_res);
     
             
                 } else {
 
-                    parentPort.postMessage(paths_res);
+                    parentPort.postMessage({ type: "file", path: paths_res });
     
                 }
             
