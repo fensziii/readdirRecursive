@@ -39,11 +39,7 @@ const path  = require("path");
         filter      : "", // example ".txt" Filters for text files
     };
 
-    const files = await rdr.readdirRecursive(options).catch((err) => {
-
-        console.error(err);
-
-    });
+    const files = await rdr.readdirRecursive(options).catch((err) => { console.error(err); });
 
     console.info(files);
 
