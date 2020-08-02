@@ -28,7 +28,7 @@ npm i @fensziii/readdirrecursive --save
 
 ## Example
 
-```
+```js
 var rdr = require("@fensziii/readdirrecursive")
 
 const path  = require("path");
@@ -55,7 +55,7 @@ const path  = require("path");
 
 ## Output
 
-```
+```json
 {
   path: '',
   files: [],
