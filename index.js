@@ -86,7 +86,7 @@ if (isMainThread) {
                 if(d.type === "file"){
 
                     var _OPTF     = options.filter;
-                    var filter    = _OPTF === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
+                    var filter    = options.filter === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
     
                     if(filter){
 
