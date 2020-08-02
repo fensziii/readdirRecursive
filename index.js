@@ -137,7 +137,7 @@ if (isMainThread) {
 
 } else {
 
-    const Walker = function (dir) {
+    const walker = function (dir) {
         
         fs.readdir(dir, function (err, files){
 
@@ -151,7 +151,7 @@ if (isMainThread) {
             
                     parentPort.postMessage({ type: "dir", path: paths_res });
     
-                    Walker(paths_res);
+                    walker(paths_res);
     
             
                 } else {
@@ -166,6 +166,6 @@ if (isMainThread) {
 
     }
 
-    Walker( workerData.path );
+    walker( workerData.path );
 
 }
