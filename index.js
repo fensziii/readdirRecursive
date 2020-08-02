@@ -145,9 +145,9 @@ if (isMainThread) {
             
                 const paths_res = path.resolve(dir, file);
     
-                const stats_dir = fs.statSync(paths_res);
+                const statsWalk = fs.statSync(paths_res);
         
-                if(stats_dir.isDirectory()){
+                if(statsWalk.isDirectory()){
             
                     parentPort.postMessage({ type: "dir", path: paths_res });
     
