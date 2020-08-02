@@ -41,9 +41,19 @@ var tools = {
         */
 
         // Pad to 2 or 3 digits, default is 2
-        var pad = (n, z = 2) => ("00" + n).slice(-z);
-
-        return pad(s/3.6e6|0) + ":" + pad((s%3.6e6)/6e4 | 0) + ":" + pad((s%6e4)/1000|0) + "." + pad(s%1000, 3);
+        function pad(n, z) {
+            z = z || 2;
+            return ('00' + n).slice(-z);
+        }
+        
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+        
+        return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3);
 
     }
 
