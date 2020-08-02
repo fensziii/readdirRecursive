@@ -4,7 +4,7 @@ var rdr     = require("./../index")
 
 const path  = require("path");
 
-(async () =>{
+(async () => {
 
     const options = {
         path        : path.join(__dirname, '..'),
