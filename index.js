@@ -86,7 +86,7 @@ if (isMainThread) {
                 if(d.type === "file"){
 
                     var _OPTF     = options.filter;
-                    var filter    = options.filter === undefined || _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
+                    var filter    = _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
     
                     if(filter){
 
@@ -143,20 +143,20 @@ if (isMainThread) {
 
             files.forEach((file) => {
             
-                var paths_res = path.resolve(dir, file);
+                var PathRes = path.resolve(dir, file);
     
-                var StatsWalk = fs.statSync(paths_res);
+                var StatsWalk = fs.statSync(PathRes);
         
                 if(StatsWalk.isDirectory()){
             
-                    parentPort.postMessage({ type: "dir", path: paths_res });
+                    parentPort.postMessage({ type: "dir", path: PathRes });
     
-                    walker(paths_res);
+                    walker(PathRes);
     
             
                 } else {
 
-                    parentPort.postMessage({ type: "file", path: paths_res });
+                    parentPort.postMessage({ type: "file", path: PathRes });
     
                 }
             
@@ -164,8 +164,8 @@ if (isMainThread) {
     
         });
 
-    }
+    };
 
     walker( workerData.path );
 
-};
+}
