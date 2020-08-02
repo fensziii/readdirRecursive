@@ -1,5 +1,6 @@
 # nodejs - readdirRecursive
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a2670015d6914187b5756ef56d9c6ef1)](https://app.codacy.com/manual/fensziii/readdirRecursive?utm_source=github.com&utm_medium=referral&utm_content=fensziii/readdirRecursive&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/fensziii/readdirRecursive.svg?branch=master)](https://travis-ci.com/github/fensziii/readdirRecursive)
 [![npm package](https://img.shields.io/badge/npm%20package-1.0.1-brightgreen)](https://www.npmjs.com/package/@fensziii/readdirrecursive)
 
