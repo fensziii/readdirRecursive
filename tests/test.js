@@ -1,3 +1,5 @@
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+
 var rdr     = require("./../index")
 
 const path  = require("path");
@@ -12,10 +14,10 @@ const path  = require("path");
 
     const files = await rdr.readdirRecursive(options).catch((err) => {
 
-        console.log(err);
+        console.error(err);
 
     });
 
-    console.log(files);
+    console.warn(files);
 
 })();
