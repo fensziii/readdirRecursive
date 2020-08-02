@@ -47,7 +47,7 @@ var tools = {
 
     }
 
-}
+};
 
 
 /*
@@ -168,4 +168,4 @@ if (isMainThread) {
 
     walker( workerData.path );
 
-}
+};
