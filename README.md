@@ -15,7 +15,6 @@ npm package [@fensziii/readdirrecursive](https://www.npmjs.com/package/@fensziii
 
 **14.x** = Supported
 
-
 ## Install
 ```txt
 npm i @fensziii/readdirrecursive
@@ -27,10 +26,9 @@ npm i @fensziii/readdirrecursive --save
 
 ## Example
 ```js
-var rdr = require("@fensziii/readdirrecursive")
+var rdr     = require("@fensziii/readdirrecursive")
 
 const path  = require("path");
-
 
 (async ()=>{
 
@@ -48,8 +46,6 @@ const path  = require("path");
 
 })();
 ```
-
-
 
 ## Output
 ```txt
