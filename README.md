@@ -49,7 +49,7 @@ const path  = require("path");
 ## Output
 ```txt
 {
-  files       : ["index.js", "test/test.js"],
+  files       : ["index.js", "tests/test.js"],
   folders     : ["tests"],
   info        : {
     time        : 51,
