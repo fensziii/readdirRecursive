@@ -9,13 +9,13 @@ read dir recursively
 npm package [@fensziii/readdirrecursive](https://www.npmjs.com/package/@fensziii/readdirrecursive).
 
 ## Supported Node versions
-
-**<=10.x** = Unsupported
-
-**12.x** = Supported
-
-**14.x** = Supported
-
+>
+>**<=10.x** = Unsupported
+>
+>**12.x** = Supported
+>
+>**14.x** = Supported
+>
 ## Install
 ```txt
 npm i @fensziii/readdirrecursive
