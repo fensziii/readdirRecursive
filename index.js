@@ -96,7 +96,7 @@ if (isMainThread) {
                 if(d.type === "file"){
 
                     var _OPTF     = options.filter;
-                    var filter    = options.filter === undefined ? /(.*)/g : options.filter;
+                    var filter    = options.filter === undefined ? /(.*)/g : options.filter.constructor === RegExp ? options.filter : /(.*)/g;
     
                     if(filter.test(d.path)){
 
