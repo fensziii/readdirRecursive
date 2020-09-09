@@ -39,8 +39,6 @@ const path  = require("path");
         filter      : /(.js$)/g // or new RegExp(".js$", "g")
     };
 
-    const files = await rdr.readdirRecursive(options);
-    // or
     const files = await rdr.readdirRecursive(options).catch((err) => { console.error(err); });
 
     console.info(files);
