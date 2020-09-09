@@ -86,19 +86,19 @@ if (isMainThread) {
 
             worker.on("message", (d) => {
 
-                let filepath = "";
+                let filepath = d.path;
                 var platform = os.platform();
 
-                if(options.fullpath === false && platform === "linux"){ filepath = d.path.replace(options.path + "/", ""); }
-                if(options.fullpath === false && platform === "win32"){ filepath = d.path.replace(options.path + "\\", ""); }
+                if(options.fullpath === false && platform === "linux"){ filepath = filepath.replace(options.path + "/", ""); }
+                if(options.fullpath === false && platform === "win32"){ filepath = filepath.replace(options.path + "\\", ""); }
 
 
                 if(d.type === "file"){
 
                     var _OPTF     = options.filter;
-                    var filter    = _OPTF === null || _OPTF === false || _OPTF === true || _OPTF === "" ? true : d.includes(options.filter);
+                    var filter    = options.filter === undefined ? /(.*)/g : options.filter;
     
-                    if(filter){
+                    if(filter.test(d.path)){
 
                         var StatsFile = fs.statSync(d.path);
     
