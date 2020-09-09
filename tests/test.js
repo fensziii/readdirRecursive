@@ -9,7 +9,7 @@ const path  = require("path");
     const options = {
         path        : path.join(__dirname, ".."),
         fullpath    : false,
-        filter      : /(.*)/g // /(.js$)/g or new RegExp(".js$", "g")
+        filter      : /(.js$)/g // /(.js$)/g or new RegExp(".js$", "g")
     };
 
     const files = await rdr.readdirRecursive(options).catch((err) => {

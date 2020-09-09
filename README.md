@@ -49,13 +49,13 @@ const path  = require("path");
 ## Output
 ```txt
 {
-  files       : [],
-  folders     : [],
+  files       : ["index.js", "test/test.js"],
+  folders     : ["tests"],
   info        : {
     time        : 51,
     path        : "",
-    files       : 41,
-    folders     : 20,
+    files       : 2,
+    folders     : 1,
     size        : 30532,
     converted   : {
       size        : '29.82 KB',
@@ -64,6 +64,11 @@ const path  = require("path");
   }
 }
 ```
+## Changelog
+
+**1.0.7**
++ Fix fullpath
++ Filter changed to RegExp
 
 ## License
 
