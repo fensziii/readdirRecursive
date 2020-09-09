@@ -177,5 +177,5 @@ if (isMainThread) {
     };
 
     walker( workerData.path );
-
+    
 }
