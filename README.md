@@ -66,7 +66,7 @@ const path  = require("path");
 ```
 ## Changelog
 
-**1.0.7** `09.09.2020`
+> 1.0.7
 + Fix fullpath
 + Filter changed to RegExp
 
